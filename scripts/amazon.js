@@ -1,7 +1,7 @@
 import {cart, addToCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
-
+import { updateCartQuantity } from './utils/money.js';
 
 let productsHTML = '';
 
@@ -65,17 +65,13 @@ products.forEach((product) =>{
 document.querySelector('.js-products-grid').
 innerHTML = productsHTML
 
-function updateCartQuantity() {
-  let cartQuantity = 0;
+// Call the function to update the cart quantity when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+  updateCartQuantity(cart);
+});
 
-  cart.forEach((cartItem) => {
-    cartQuantity += cartItem.quantity;
-  })
 
-  document.querySelector('.js-cart-quantity')
-    .innerHTML = cartQuantity
 
-}
 
 document.querySelectorAll('.js-add-to-cart')
  .forEach((button) => {
@@ -88,3 +84,30 @@ document.querySelectorAll('.js-add-to-cart')
   
   } );
  });
+
+
+ document.querySelector('.js-products-grid').innerHTML = productsHTML;
+
+// Call the function to update the cart quantity when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+  updateCartQuantity(cart);
+});
+
+// Function to update the cart quantity when an item is added to the cart
+function handleAddToCart(productId) {
+  addToCart(productId);
+  updateCartQuantity(cart);
+}
+
+document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+  button.addEventListener('click', () => {
+    const productId = button.dataset.productId;
+    handleAddToCart(productId);
+  });
+});
+
+// Optionally, you can also call updateCartQuantity after other relevant events.
+// For example, after removing an item from the cart or modifying quantities.
+
+
+

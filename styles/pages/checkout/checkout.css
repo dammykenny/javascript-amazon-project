@@ -209,3 +209,63 @@
   margin-top: 11px;
   margin-bottom: 15px;
 }
+
+/* checkout.css */
+.quantity-input {
+  width: 30px;
+  /* Add any additional styles you want for the input */
+}
+
+.link-primary {
+  /* Add styles for link-primary class */
+  /* For example, you might want to set color and text decoration */
+  color: #007BFF;
+  text-decoration: underline;
+}
+
+/* Add your existing styles here */
+
+/* Add styles for the input and save link when editing */
+.is-editing .quantity-input,
+.is-editing .save-quantity-link {
+  display: initial;
+}
+
+/* Set initial display to none */
+.quantity-input,
+.save-quantity-link {
+  display: none;
+}
+
+/* Add styles for the input and save link when editing */
+.is-editing-quantity .quantity-input,
+.is-editing-quantity .save-quantity-link {
+  display: initial;
+}
+
+/* Set initial display to none */
+.quantity-input,
+.save-quantity-link {
+  display: none;
+}
+
+
+/* Add your existing styles here */
+
+/* Add styles for the input and save link when editing */
+.is-editing-quantity .quantity-input,
+.is-editing-quantity .save-quantity-link {
+  display: initial;
+}
+
+/* Set initial display to none */
+.quantity-input,
+.save-quantity-link {
+  display: none;
+}
+
+/* Hide the quantity and "update" link when editing */
+.is-editing-quantity .product-quantity,
+.is-editing-quantity .update-quantity-link {
+  display: none;
+}
