@@ -4,9 +4,13 @@ import { formatCurrency } from '../utils/money.js';
 import { updateCartQuantity } from '../utils/money.js'; 
 import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js'
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'
-import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOption.js';
+import { deliveryOptions, getDeliveryOption, calculateDeliveryDate } from '../../data/deliveryOption.js';
 import { renderPaymentSummary } from './paymentSummary.js';
+import { renderCheckoutHeader } from './checkoutHeader.js';
 
+
+renderCheckoutHeader()
+ 
 export function renderOrderSummary() {
   let cartSummaryHTML = '';
 
@@ -28,8 +32,8 @@ export function renderOrderSummary() {
     const dateString = deliveryDate.format(
       'dddd, MMMM D'
     );
-  
-  
+
+
 
     cartSummaryHTML += `
       <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
@@ -245,6 +249,14 @@ export function renderOrderSummary() {
         }
       });
     });
+}
+
+function generateOrderSummaryHTML(cart) {
+  // Other code...
+
+  const deliveryDate = calculateDeliveryDate(deliveryOption);
+
+  // Other code...
 }
 
 
