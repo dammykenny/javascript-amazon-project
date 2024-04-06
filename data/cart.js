@@ -19,7 +19,7 @@
   }];
  }
 } 
-
+ 
 function saveToStorage() {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
@@ -79,4 +79,4 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
 
     saveToStorage();
 
-}
+} 
