@@ -10,7 +10,8 @@ import { renderPaymentSummary } from './paymentSummary.js';
 
 // Function definition for rendering checkout header
 function renderCheckoutHeader() {
-  const checkoutHeaderHTML = `
+  let checkoutHeaderHTML = ``
+   checkoutHeaderHTML += `
     <div class="checkout-header">
       <div class="header-content">
         <div class="checkout-header-left-section">
@@ -28,8 +29,7 @@ function renderCheckoutHeader() {
       </div>
     </div>
   `;
-  const checkoutHeaderContainer = document.querySelector('.checkout-header');
-  checkoutHeaderContainer.innerHTML = checkoutHeaderHTML;
+  document.querySelector('.checkout-header').innerHTML = checkoutHeaderHTML;
 }
 
 // Function definition for rendering order summary
