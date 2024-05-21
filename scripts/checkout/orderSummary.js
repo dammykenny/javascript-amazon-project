@@ -60,8 +60,7 @@ export function renderOrderSummary() {
             <div class="product-quantity js-product-quantity-${matchingProduct.id}">
               <span>Quantity: <span class="quantity-label">${cartItem.quantity}</span></span>
               <span class="update-quantity-link link-primary" data-product-id="${matchingProduct.id}" disabled>Update</span>
-              <input id="quantityInput" class="quantity-input js-quantity-input" type="number" name="quantity" placeholder="New Quantity">
-
+              <input class="quantity-input js-quantity-input" type="number" placeholder="New Quantity">
               <span class="save-quantity-link link-primary" data-product-id="${matchingProduct.id}">Save</span>
               <span class="delete-quantity-link link-primary js-delete-link js-delete-link-${matchingProduct.id}" data-product-id="${matchingProduct.id}">Delete</span>
             </div>
@@ -179,6 +178,11 @@ export function renderOrderSummary() {
     });
   });
 }
+try{
+  renderCheckoutHeader();
+} catch{
+  console.log('there is error somewhere in your code')
+}
 
 // Call to render the checkout header
-renderCheckoutHeader();
+
