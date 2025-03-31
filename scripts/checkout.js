@@ -1,95 +1,34 @@
+// console.log('checkout.js loaded');
+
 import { renderOrderSummary } from './checkout/orderSummary.js';
 import { renderPaymentSummary } from './checkout/paymentSummary.js';
-import { loadProducts, loadProductsFetch } from '../data/products.js';
-import { loadCart } from '../data/cart.js';
-//import '../data/cart-class.js';
-//import '../data/backed-practice.js';
+import { loadProductsFetch } from '../data/products.js';
+import { loadCart, cart } from '../data/cart.js';
+
+// console.log('Imports completed, initial cart:', cart);
 
 async function loadPage() {
-    try 
-    {
-      //  throw 'error1';
-
-
+    try {
+        // console.log('Loading products...');
         await loadProductsFetch();
-
-        const value = await new Promise((resolve, reject) => { 
-           // throw 'error2';
+        // console.log('Products loaded');
+        // console.log('Loading cart...');
+        await new Promise((resolve) => {
             loadCart(() => {
-               // reject('error3')
-               resolve('value3'); 
-            }); 
-           });
-    
-
-    } catch (error) {
-        console.log('Unexpected error. Please try again later  '); 
-    }
-   
-       renderOrderSummary();
-       renderPaymentSummary();
-}
-loadPage();
-
-/*
-
-Promise.all([
-    loadProductsFetch(),
-new Promise((resolve) => { 
-    loadCart(() => {
-       resolve();
-    }); 
-   })
-
-]).then((values) => {
-    console.log(values);
-    renderOrderSummary();
-    renderPaymentSummary();
-});
-
-*/
-
-/*
-new Promise((resolve) => {
-    loadProducts(() => {
-      resolve('value1');    
-    });
-
-}).then((value) => {
-    console.log(value)
-
-    return new Promise((resolve) => { 
-     loadCart(() => {
-        resolve();
-     });
-    });
-
-}).then(() => { 
-    renderOrderSummary();
-    renderPaymentSummary();
-});
-*/
-
-/*
- loadProducts(() => {
-    loadCart(() => {
+                // console.log('Cart after loadCart:', cart);
+                resolve();
+            });
+        });
+        // console.log('Rendering order summary...');
         renderOrderSummary();
+        // console.log('Order summary rendered');
+        // console.log('Rendering payment summary...');
         renderPaymentSummary();
-    });  
- })
-*/
- 
-/*
-// checkout.js
-import { Car } from '../data/car.js';
-const toyotaCorolla = new Car('Toyota', 'Corolla');
-const teslaModel3 = new Car('Tesla', 'Model 3');
-const hondaAccord = new Car('Honda', 'Accord');
-const nissanPathfeinder = new Car('Nissan', 'Pathfeinder');
+        // console.log('Payment summary rendered');
+    } catch (error) {
+        console.error('Error in loadPage:', error);
+        document.querySelector('.js-order-summary').innerHTML = '<p>Error loading cart. Please try again.</p>';
+    }
+}
 
-
-console.log(toyotaCorolla);
-console.log(teslaModel3);
-console.log(hondaAccord);
-console.log(nissanPathfeinder);
-*/
+loadPage();

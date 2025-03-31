@@ -269,3 +269,23 @@
 .is-editing-quantity .update-quantity-link {
   display: none;
 }
+.payment-options {
+    margin-top: 1rem;
+}
+
+.payment-option {
+    margin-bottom: 1rem;
+}
+
+.stripe-element {
+    margin: 1rem 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#card-errors, #paypal-errors {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}

@@ -23,16 +23,12 @@ export function getDeliveryOption(deliveryOptionId) {
 
     return deliveryOption;
 };
-
 export function calculateDeliveryDate(deliveryOption) {
   const today = new Date();
-  let deliveryDate = new Date(today.getTime() + deliveryOption.deliveryTime * 24 * 60 * 60 * 1000);
-  
-  // Skip weekends
+  let deliveryDate = new Date(today.getTime() + deliveryOption.deliveryDays * 24 * 60 * 60 * 1000); // Fixed deliveryDays
   while (deliveryDate.getDay() === 0 || deliveryDate.getDay() === 6) {
-    deliveryDate.setDate(deliveryDate.getDate() + 1);
+      deliveryDate.setDate(deliveryDate.getDate() + 1);
   }
-
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   return deliveryDate.toLocaleDateString('en-US', options);
 }
